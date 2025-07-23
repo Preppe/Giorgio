@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Giorgio AI Design System */
+@layer base {
+  :root {
+    --background: 220 15% 8%;
+    --foreground: 200 100% 95%;
+
+    --card: 220 15% 12%;
+    --card-foreground: 200 100% 95%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 200 100% 95%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 15% 8%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 200 100% 95%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 200 50% 70%;
+
+    --accent: 180 100% 60%;
+    --accent-foreground: 220 15% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Giorgio Variables */
+    --neon-blue: 195 100% 50%;
+    --neon-cyan: 180 100% 60%;
+    --neon-silver: 210 20% 80%;
+    --hologram-glow: 195 100% 50%;
+    --ai-core-glow: 195 100% 60%;
+    --header-height: 64px;
+    
+    /* Keyboard-aware positioning */
+    --keyboard-height: 0px;
+    --keyboard-inset-height: env(keyboard-inset-height, 0px);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    background-image:
+      radial-gradient(circle at 25% 25%, hsl(195 100% 50% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(180 100% 60% / 0.05) 0%, transparent 50%);
+  }
+}
+
+/* Futuristic Animations */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px hsl(var(--neon-blue)),
+      0 0 10px hsl(var(--neon-blue)),
+      0 0 15px hsl(var(--neon-blue));
+  }
+  50% {
+    box-shadow:
+      0 0 10px hsl(var(--neon-blue)),
+      0 0 20px hsl(var(--neon-blue)),
+      0 0 30px hsl(var(--neon-blue));
+  }
+}
+
+@keyframes ai-core-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px hsl(var(--ai-core-glow)),
+      0 0 40px hsl(var(--ai-core-glow)),
+      0 0 60px hsl(var(--ai-core-glow)),
+      inset 0 0 20px hsl(var(--ai-core-glow) / 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 30px hsl(var(--ai-core-glow)),
+      0 0 60px hsl(var(--ai-core-glow)),
+      0 0 90px hsl(var(--ai-core-glow)),
+      inset 0 0 30px hsl(var(--ai-core-glow) / 0.4);
+  }
+}
+
+@keyframes waveform {
+  0%,
+  100% {
+    height: 10%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+@keyframes hologram-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes data-stream {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Custom Components */
+.ai-core {
+  @apply relative w-32 h-32 rounded-full border-2 border-primary bg-gradient-to-br from-primary/20 to-accent/20;
+  animation: ai-core-pulse 3s ease-in-out infinite;
+}
+
+.ai-core::before {
+  content: '';
+  @apply absolute inset-4 rounded-full bg-gradient-to-br from-primary to-accent;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.ai-core::after {
+  content: '';
+  @apply absolute inset-8 rounded-full bg-white;
+  box-shadow: 0 0 10px hsl(var(--primary));
+}
+
+.hologram-panel {
+  @apply relative border border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 backdrop-blur-sm;
+}
+
+.voice-wave {
+  @apply w-1 bg-gradient-to-t from-primary to-accent rounded-full;
+  animation: waveform 1.5s ease-in-out infinite;
+}
+
+.voice-wave:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.voice-wave:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.voice-wave:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.voice-wave:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.neon-text {
+  @apply text-primary;
+  text-shadow:
+    0 0 5px hsl(var(--primary)),
+    0 0 10px hsl(var(--primary));
+}
+
+.data-stream {
+  animation: data-stream 2s linear infinite;
+}
+
+.h-header-safe {
+  height: calc(var(--header-height) + env(safe-area-inset-top));
+}
+
+.pt-header-safe {
+  padding-top: calc(0.75rem + env(safe-area-inset-top));
+}
+
+.pt-sheet-safe {
+  padding-top: calc(1.5rem + env(safe-area-inset-top));
+}
+
+/* Keyboard-aware positioning utilities */
+.pb-keyboard-safe {
+  padding-bottom: calc(env(safe-area-inset-bottom) + var(--keyboard-inset-height));
+}
+
+.mb-keyboard-safe {
+  margin-bottom: calc(env(safe-area-inset-bottom) + var(--keyboard-inset-height));
+}
